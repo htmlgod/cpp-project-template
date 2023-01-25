@@ -41,3 +41,4 @@ cmake --build _build --target hello_test
 - [ ] add artifacts build (github)
 - [ ] github branches settings
 - [ ] add script for hunter update in repo
+- [ ] rewrite CMakeLists.txt (as template)
