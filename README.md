@@ -3,6 +3,8 @@
 Enter project info here
 
 
+Boost::program_options is used by default
+
 ## add submodules
 ```
 git submodule add https://github.com/author/repo third_party/repo

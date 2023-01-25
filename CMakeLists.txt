@@ -14,8 +14,8 @@ project(PROJECTNAME)
 #add_subdirectory(third_party/lib)
 
 # use hunter_add_package to add library, find_package to include it to cmake project
-#hunter_add_package(Boost COMPONENTS program_options)
-#find_package(Boost CONFIG REQUIRED program_options)
+hunter_add_package(Boost COMPONENTS program_options)
+find_package(Boost CONFIG REQUIRED program_options)
 
 # define cpp files here
 add_executable(
@@ -38,8 +38,8 @@ target_include_directories(
 )
 
 # link libraries (3rd party, or like BOOST, or your own added by add_library) here
-#target_link_libraries(
-#    ${PROJECT_NAME} 
-#    PUBLIC
-#    lib_name
-#)
+target_link_libraries(
+    ${PROJECT_NAME} 
+    PUBLIC
+    Boost::program_options
+)
