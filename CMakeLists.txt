@@ -8,38 +8,36 @@ HunterGate(
     SHA1 "00901c19eefc02d24b16705b5f5a2b4f093a73fb"
 )
 
-project(PROJECTNAME)
+project(CPP-PROJECT-TEMPLATE)
+option(BUILD_TESTS "Build tests" OFF)
 
-# use add_subdirectory to add 3rd party lib
-#add_subdirectory(third_party/lib)
+hunter_add_package(GTest)
+find_package(GTest CONFIG REQUIRED)
 
-# use hunter_add_package to add library, find_package to include it to cmake project
-#hunter_add_package(Boost COMPONENTS program_options)
-#find_package(Boost CONFIG REQUIRED program_options)
-
-# define cpp files here
+# TODO: define source files here
 add_executable(
     ${PROJECT_NAME} 
     ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
 )
 
-# define cpp files here
-#add_library(
-#    lib_name
-#    ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
-#)
-
-# define more include directories here
+# TODO: define include directories here
 target_include_directories(
     ${PROJECT_NAME}
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/headers
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party
 )
 
-# link libraries (3rd party, or like BOOST, or your own added by add_library) here
-#target_link_libraries(
-#    ${PROJECT_NAME} 
-#    PUBLIC
-#    lib_name
-#)
+include(cmake/packaging.cmake)
+if(BUILD_TESTS)
+    enable_testing()
+    # TODO: enum tests
+    add_executable("${PROJECT_NAME}_tests"
+        tests/test.cpp
+    )
+    target_link_libraries(
+      "${PROJECT_NAME}_tests"
+      GTest::gtest_main
+    )
+    include(GoogleTest)
+    gtest_discover_tests("${PROJECT_NAME}_tests")
+endif()
