@@ -9,6 +9,8 @@ HunterGate(
 )
 
 project(PROJECTNAME)
+# option for testing
+option(BUILD_TESTS "Build tests" OFF)
 
 # use add_subdirectory to add 3rd party lib
 #add_subdirectory(third_party/lib)
@@ -16,6 +18,9 @@ project(PROJECTNAME)
 # use hunter_add_package to add library, find_package to include it to cmake project
 hunter_add_package(Boost COMPONENTS program_options)
 find_package(Boost CONFIG REQUIRED program_options)
+
+hunter_add_package(GTest)
+find_package(GTest CONFIG REQUIRED)
 
 # define cpp files here
 add_executable(
@@ -43,3 +48,18 @@ target_link_libraries(
     PUBLIC
     Boost::program_options
 )
+
+# testing
+if(BUILD_TESTS)
+    enable_testing()
+    add_executable(
+      hello_test
+      tests/test.cpp
+    )
+    target_link_libraries(
+      hello_test
+      GTest::gtest_main
+    )
+    include(GoogleTest)
+    gtest_discover_tests(hello_test)
+endif()

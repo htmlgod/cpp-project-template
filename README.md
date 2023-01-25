@@ -13,9 +13,9 @@ git clone --recurse-submodules https://github.com/your_profile/repo
 ```
 
 ## template todo
-- [ ] add gtest submodule/hunter package by default
-- [ ] add tests directory, example test, cmake testing instructions
-- [ ] add to CMakeFile.txt testing
+- [x] add gtest submodule/hunter package by default
+- [x] add tests directory, example test, cmake testing instructions
+- [x] add to CMakeFile.txt testing
 - [ ] add github ci/travis ci
 - [ ] add coverage and other tools
 - [ ] add CPACK config
