@@ -42,3 +42,4 @@ cmake --build _build --target hello_test
 - [ ] github branches settings
 - [ ] add script for hunter update in repo
 - [ ] rewrite CMakeLists.txt (as template)
+- [ ] add script for deployment (project name, remove unnecessery info from readme)
