@@ -14,6 +14,9 @@ option(BUILD_TESTS "Build tests" OFF)
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
+hunter_add_package(Boost COMPONENTS program_options)
+find_package(Boost CONFIG REQUIRED program_options)
+
 # TODO: define source files here
 add_executable(
     ${PROJECT_NAME} 
@@ -25,6 +28,13 @@ target_include_directories(
     ${PROJECT_NAME}
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/headers
+)
+
+# TODO: define libraries here
+target_link_libraries(
+    ${PROJECT_NAME}
+    PUBLIC
+    Boost::program_options
 )
 
 include(cmake/packaging.cmake)
